@@ -148,4 +148,83 @@ contract MyTokenTest is Test {
         assertEq(token.balanceOf(owner), INITIAL_SUPPLY);
         assertEq(token.balanceOf(user1), 0);
     }
+
+    // Allowance spending tests
+    function testInfiniteAllowance() public {
+        token.approve(user1, type(uint256).max);
+        
+        vm.startPrank(user1);
+        token.transferFrom(owner, user2, 1000);
+        token.transferFrom(owner, user2, 2000);
+        vm.stopPrank();
+        
+        assertEq(token.allowance(owner, user1), type(uint256).max);
+    }
+
+    function testExactAllowance() public {
+        uint256 amount = 1000;
+        token.approve(user1, amount);
+        
+        vm.prank(user1);
+        token.transferFrom(owner, user2, amount);
+        
+        assertEq(token.allowance(owner, user1), 0);
+    }
+
+    function testPartialAllowance() public {
+        token.approve(user1, 1000);
+        
+        vm.prank(user1);
+        token.transferFrom(owner, user2, 600);
+        
+        assertEq(token.allowance(owner, user1), 400);
+    }
+
+    // Allowance modification tests
+    function testIncreaseAllowanceEvents() public {
+        vm.expectEmit(true, true, false, true);
+        emit Approval(owner, user1, 1000);
+        token.approve(user1, 1000);
+
+        vm.expectEmit(true, true, false, true);
+        emit Approval(owner, user1, 1500);
+        token.increaseAllowance(user1, 500);
+    }
+
+    function testDecreaseAllowanceEvents() public {
+        token.approve(user1, 1000);
+
+        vm.expectEmit(true, true, false, true);
+        emit Approval(owner, user1, 400);
+        token.decreaseAllowance(user1, 600);
+    }
+
+    function testFailDecreaseAllowanceUnderflow() public {
+        token.approve(user1, 1000);
+        token.decreaseAllowance(user1, 1001);
+    }
+
+    // Transfer edge cases
+    function testSelfTransfer() public {
+        uint256 balanceBefore = token.balanceOf(owner);
+        token.transfer(owner, 1000);
+        assertEq(token.balanceOf(owner), balanceBefore);
+    }
+
+    function testMaxAmountTransfer() public {
+        uint256 maxAmount = token.balanceOf(owner);
+        token.transfer(user1, maxAmount);
+        assertEq(token.balanceOf(owner), 0);
+        assertEq(token.balanceOf(user1), maxAmount);
+    }
+
+    function testTransferWithZeroBalance() public {
+        vm.prank(user1);
+        bool success = token.transfer(user2, 0);
+        assertTrue(success);
+        assertEq(token.balanceOf(user1), 0);
+        assertEq(token.balanceOf(user2), 0);
+    }
+
+    // Approval patterns
 }

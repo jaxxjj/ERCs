@@ -1,0 +1,50 @@
+No files changed, compilation skipped
+
+Ran 25 tests for test/unit/MyToken.t.sol:MyTokenTest
+[PASS] testAllowanceDoesNotAffectBalance() (gas: 68466)
+[PASS] testApprove() (gas: 62995)
+[PASS] testApproveEmitsEvent() (gas: 62194)
+[PASS] testDecreaseAllowanceEvents() (gas: 93807)
+[PASS] testExactAllowance() (gas: 117091)
+[PASS] testFailDecreaseAllowanceUnderflow() (gas: 80784)
+[PASS] testFailTransferFromInsufficientAllowance() (gas: 88814)
+[PASS] testFailTransferFromInsufficientBalance() (gas: 100467)
+[PASS] testFailTransferInsufficientBalance() (gas: 38651)
+[PASS] testFailTransferToZeroAddress() (gas: 28016)
+[PASS] testIncreaseAllowance() (gas: 93507)
+[PASS] testIncreaseAllowanceEvents() (gas: 97097)
+[PASS] testInfiniteAllowance() (gas: 161770)
+[PASS] testInitialSupply() (gas: 17553)
+[PASS] testMaxAmountTransfer() (gas: 63750)
+[PASS] testMultipleTransfers() (gas: 127515)
+[PASS] testPartialAllowance() (gas: 126934)
+[PASS] testSelfTransfer() (gas: 41351)
+[PASS] testTokenMetadata() (gas: 21270)
+[PASS] testTransfer() (gas: 70188)
+[PASS] testTransferEmitsEvent() (gas: 67486)
+[PASS] testTransferFrom() (gas: 122725)
+[PASS] testTransferFromZeroAmount() (gas: 106845)
+[PASS] testTransferWithZeroBalance() (gas: 47965)
+[PASS] testTransferZeroAmount() (gas: 47298)
+Suite result: ok. 25 passed; 0 failed; 0 skipped; finished in 7.12ms (73.35ms CPU time)
+| src/examples/MyToken.sol:MyToken contract |                 |       |        |       |         |
+|-------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                           | Deployment Size |       |        |       |         |
+| 1174875                                   | 6315            |       |        |       |         |
+| Function Name                             | min             | avg   | median | max   | # calls |
+| allowance                                 | 1263            | 1263  | 1263   | 1263  | 7       |
+| approve                                   | 29705           | 45698 | 46805  | 47165 | 15      |
+| balanceOf                                 | 841             | 1449  | 841    | 2841  | 23      |
+| decimals                                  | 432             | 432   | 432    | 432   | 1       |
+| decreaseAllowance                         | 24959           | 27490 | 27490  | 30021 | 2       |
+| increaseAllowance                         | 30209           | 30209 | 30209  | 30209 | 1       |
+| name                                      | 3432            | 3432  | 3432   | 3432  | 1       |
+| symbol                                    | 3475            | 3475  | 3475   | 3475  | 1       |
+| totalSupply                               | 2482            | 2482  | 2482   | 2482  | 1       |
+| transfer                                  | 22458           | 38900 | 38306  | 52098 | 10      |
+| transferFrom                              | 25573           | 44663 | 46457  | 60195 | 8       |
+
+
+
+
+Ran 1 test suite in 8.81ms (7.12ms CPU time): 25 tests passed, 0 failed, 0 skipped (25 total tests)
