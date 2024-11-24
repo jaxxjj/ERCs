@@ -1,66 +1,8 @@
-## Foundry
+Sepolia (11155111): 
+- MyToken deployed at: [0x56e0E9773D23E8AA4e722b5C2a71B11ad70deD4D](https://sepolia.basescan.org/address/0x56e0E9773D23E8AA4e722b5C2a71B11ad70deD4D)
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Base sepolia (84632):
+- MyToken deployed at: [0xD4BE463d1f9f0e974f3265ED63c793a582b2e123](https://sepolia.basescan.org/address/0xD4BE463d1f9f0e974f3265ED63c793a582b2e123)
 
-Foundry consists of:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
 
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
