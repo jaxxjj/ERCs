@@ -4,3 +4,6 @@
 [submodule "Core Token Standards/ERC-4626/lib/forge-std"]
 	path = Core Token Standards/ERC-4626/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Core Token Standards/ERC-4626/lib/openzeppelin-contracts"]
+	path = Core Token Standards/ERC-4626/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
