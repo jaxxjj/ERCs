@@ -52,8 +52,6 @@ contract SecureVaultFuzzTest is Test {
         assertEq(vault.totalAssets(), INITIAL_DEPOSIT + assets);
     }
 
-
-
     function testFuzz_manipulationResistance(uint256 amount1, uint256 amount2) public {
         amount1 = bound(amount1, 1 * 10**18, 100 * 10**18);
         amount2 = bound(amount2, 1 * 10**18, 100 * 10**18);
