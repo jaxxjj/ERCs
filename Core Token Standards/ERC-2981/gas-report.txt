@@ -1,0 +1,46 @@
+No files changed, compilation skipped
+
+Ran 17 tests for test/unit/MyNFT.t.sol:MyNFTTest
+[PASS] testFail_ExceedMaxSupply() (gas: 66438321)
+[PASS] testFail_MintWhenDisabled() (gas: 69683)
+[PASS] testFail_MintWithoutPayment() (gas: 40935)
+[PASS] testFail_NonOwnerSetBaseURI() (gas: 35887)
+[PASS] testFail_NonOwnerSetMintingEnabled() (gas: 34774)
+[PASS] testFail_NonOwnerWithdraw() (gas: 34223)
+[PASS] test_BaseURIUpdatedEvent() (gas: 46489)
+[PASS] test_BatchMint() (gas: 234308)
+[PASS] test_BatchMintGasUsage() (gas: 218731)
+[PASS] test_InitialState() (gas: 42456)
+[PASS] test_MintGasUsage() (gas: 114064)
+[PASS] test_MintingEnabledEvent() (gas: 33230)
+[PASS] test_RoyaltyCalculation() (gas: 121723)
+[PASS] test_SetBaseURI() (gas: 146727)
+[PASS] test_SetMintingEnabled() (gas: 65739)
+[PASS] test_SingleMint() (gas: 117684)
+[PASS] test_Withdraw() (gas: 149045)
+Suite result: ok. 17 passed; 0 failed; 0 skipped; finished in 1.97s (2.54s CPU time)
+| src/examples/MyNFT.sol:MyNFT contract |                 |        |        |        |         |
+|---------------------------------------|-----------------|--------|--------|--------|---------|
+| Deployment Cost                       | Deployment Size |        |        |        |         |
+| 3535691                               | 18325           |        |        |        |         |
+| Function Name                         | min             | avg    | median | max    | # calls |
+| balanceOf                             | 988             | 988    | 988    | 988    | 2       |
+| getDefaultRoyaltyInfo                 | 2929            | 2929   | 2929   | 2929   | 1       |
+| maxSupply                             | 403             | 403    | 403    | 403    | 1       |
+| mint                                  | 0               | 59030  | 58990  | 93190  | 1009    |
+| mintBatch                             | 197551          | 197551 | 197551 | 197551 | 2       |
+| mintingEnabled                        | 2516            | 2516   | 2516   | 2516   | 1       |
+| name                                  | 3522            | 3522   | 3522   | 3522   | 1       |
+| owner                                 | 2611            | 2611   | 2611   | 2611   | 1       |
+| ownerOf                               | 981             | 981    | 981    | 981    | 6       |
+| royaltyInfo                           | 6497            | 6497   | 6497   | 6497   | 1       |
+| setBaseURI                            | 25215           | 30177  | 32659  | 32659  | 3       |
+| setMintingEnabled                     | 24219           | 43102  | 47333  | 47333  | 21      |
+| symbol                                | 3542            | 3542   | 3542   | 3542   | 1       |
+| totalSupply                           | 549             | 1215   | 549    | 2549   | 3       |
+| withdraw                              | 23781           | 27298  | 27298  | 30815  | 2       |
+
+
+
+
+Ran 1 test suite in 1.97s (1.97s CPU time): 17 tests passed, 0 failed, 0 skipped (17 total tests)
