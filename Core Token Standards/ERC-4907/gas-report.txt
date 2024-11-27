@@ -1,0 +1,29 @@
+No files changed, compilation skipped
+
+Ran 8 tests for test/unit/RentableNFT.t.sol:RentableNFTTest
+[PASS] testGetRemainingRentalTime() (gas: 66664)
+[PASS] testIsRented() (gas: 66883)
+[PASS] testMint() (gas: 12985)
+[PASS] testRentOut() (gas: 65208)
+[PASS] testRentOutNotOwner() (gas: 35651)
+[PASS] testRentalExpiration() (gas: 66973)
+[PASS] testSetUser() (gas: 63161)
+[PASS] testSetUserNotOwner() (gas: 40643)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 2.47ms (8.88ms CPU time)
+| src/examples/RentableNFT.sol:RentableNFT contract |                 |       |        |       |         |
+|---------------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                                   | Deployment Size |       |        |       |         |
+| 1182741                                           | 5474            |       |        |       |         |
+| Function Name                                     | min             | avg   | median | max   | # calls |
+| getRemainingRentalTime                            | 553             | 601   | 625    | 625   | 3       |
+| isRented                                          | 589             | 1099  | 773    | 2589  | 5       |
+| mint                                              | 68413           | 68413 | 68413  | 68413 | 8       |
+| ownerOf                                           | 2602            | 2602  | 2602   | 2602  | 1       |
+| rentOut                                           | 24380           | 43992 | 48896  | 48896 | 5       |
+| setUser                                           | 29295           | 38880 | 38880  | 48466 | 2       |
+| userOf                                            | 592             | 710   | 770    | 770   | 3       |
+
+
+
+
+Ran 1 test suite in 3.41ms (2.47ms CPU time): 8 tests passed, 0 failed, 0 skipped (8 total tests)
