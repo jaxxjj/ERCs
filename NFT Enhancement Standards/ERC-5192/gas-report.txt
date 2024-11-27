@@ -1,0 +1,62 @@
+No files changed, compilation skipped
+
+Ran 9 tests for test/unit/SoulboundMembership.t.sol:SoulboundMembershipTest
+[PASS] testFailTransferLockedToken() (gas: 223682)
+[PASS] testInitialState() (gas: 23446)
+[PASS] testIssueMembership() (gas: 203664)
+[PASS] testLockStatus() (gas: 197688)
+[PASS] testMembershipValidity() (gas: 179947)
+[PASS] testMultipleMemberships() (gas: 335140)
+[PASS] testRenewMembership() (gas: 231360)
+[PASS] testUnauthorizedIssuance() (gas: 38456)
+[PASS] testUnauthorizedRenewal() (gas: 203716)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 3.47ms (14.58ms CPU time)
+
+Ran 9 tests for test/unit/SoulboundCertificate.t.sol:SoulboundCertificateTest
+[PASS] testFailTransferLockedToken() (gas: 225824)
+[PASS] testInitialState() (gas: 23427)
+[PASS] testIssueCertificate() (gas: 208278)
+[PASS] testLockStatus() (gas: 199708)
+[PASS] testMultipleCertificates() (gas: 364483)
+[PASS] testRevokeCertificate() (gas: 223193)
+[PASS] testTokenURI() (gas: 201342)
+[PASS] testUnauthorizedIssuance() (gas: 39929)
+[PASS] testUnauthorizedRevocation() (gas: 225647)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 3.55ms (12.13ms CPU time)
+| src/examples/SoulboundCertificate.sol:SoulboundCertificate contract |                 |        |        |        |         |
+|---------------------------------------------------------------------|-----------------|--------|--------|--------|---------|
+| Deployment Cost                                                     | Deployment Size |        |        |        |         |
+| 1482405                                                             | 6794            |        |        |        |         |
+| Function Name                                                       | min             | avg    | median | max    | # calls |
+| getCertificate                                                      | 2994            | 2994   | 2994   | 2994   | 3       |
+| issueCertificate                                                    | 25706           | 163629 | 185130 | 185130 | 9       |
+| issuer                                                              | 2382            | 2382   | 2382   | 2382   | 1       |
+| locked                                                              | 715             | 715    | 715    | 715    | 2       |
+| name                                                                | 3285            | 3285   | 3285   | 3285   | 1       |
+| ownerOf                                                             | 536             | 542    | 536    | 561    | 4       |
+| revokeCertificate                                                   | 23751           | 27331  | 27331  | 30911  | 2       |
+| symbol                                                              | 3284            | 3284   | 3284   | 3284   | 1       |
+| tokenURI                                                            | 1038            | 1038   | 1038   | 1038   | 1       |
+| transferFrom                                                        | 24200           | 24200  | 24200  | 24200  | 1       |
+
+
+| src/examples/SoulboundMembership.sol:SoulboundMembership contract |                 |        |        |        |         |
+|-------------------------------------------------------------------|-----------------|--------|--------|--------|---------|
+| Deployment Cost                                                   | Deployment Size |        |        |        |         |
+| 1332535                                                           | 6102            |        |        |        |         |
+| Function Name                                                     | min             | avg    | median | max    | # calls |
+| admin                                                             | 2447            | 2447   | 2447   | 2447   | 1       |
+| getMembershipDetails                                              | 1755            | 1755   | 1755   | 1755   | 4       |
+| isMembershipValid                                                 | 767             | 767    | 767    | 767    | 2       |
+| issueMembership                                                   | 24224           | 154956 | 163119 | 183055 | 9       |
+| locked                                                            | 782             | 782    | 782    | 782    | 2       |
+| name                                                              | 3263            | 3263   | 3263   | 3263   | 1       |
+| ownerOf                                                           | 602             | 602    | 602    | 602    | 3       |
+| renewMembership                                                   | 23903           | 27535  | 27535  | 31167  | 2       |
+| symbol                                                            | 3262            | 3262   | 3262   | 3262   | 1       |
+| transferFrom                                                      | 24156           | 24156  | 24156  | 24156  | 1       |
+
+
+
+
+Ran 2 test suites in 4.76ms (7.02ms CPU time): 18 tests passed, 0 failed, 0 skipped (18 total tests)
