@@ -3,4 +3,39 @@ src = "src"
 out = "out"
 libs = ["lib"]
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+remappings = [
+    "@openzeppelin/=lib/openzeppelin-contracts/"
+]
+
+fuzz_runs = 1000
+fuzz_max_local_rejects = 10000
+fuzz_seed = '0x3e8'
+fuzz_max_test_rejects = 100000
+
+invariant_runs = 1000
+invariant_depth = 100
+invariant_fail_on_revert = true
+invariant_call_override = false
+invariant_shrink_sequence = true
+
+gas_reports = ["*"]
+gas_reports_ignore = []
+gas_price = 100000000000
+memory_limit = 1073741824
+
+[profile.ci]
+fuzz_runs = 10000
+invariant_runs = 10000
+fuzz_max_local_rejects = 100000
+invariant_depth = 200
+
+[profile.intensive]
+fuzz_runs = 5000
+fuzz_max_local_rejects = 50000
+invariant_runs = 5000
+invariant_depth = 150
+
+[profile.gas_report]
+gas_reports = ["*"]
+gas_reports_ignore = []
+verbosity = 3

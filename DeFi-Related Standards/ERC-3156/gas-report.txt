@@ -1,0 +1,49 @@
+No files changed, compilation skipped
+
+Ran 10 tests for test/unit/FlashLoan.t.sol:FlashLoanTest
+[PASS] testAddSupportedToken() (gas: 648410)
+[PASS] testFailExpiredLoan() (gas: 165942)
+[PASS] testFailFlashLoanInsufficientBalance() (gas: 55464)
+[PASS] testFailFlashLoanUnsupportedToken() (gas: 638111)
+[PASS] testFailNonOwnerWithdraw() (gas: 36644)
+[PASS] testFlashLoanFee() (gas: 13365)
+[PASS] testFlashLoanMaxAmount() (gas: 18272)
+[PASS] testInitialState() (gas: 24429)
+[PASS] testRemoveSupportedToken() (gas: 33466)
+[PASS] testWithdrawToken() (gas: 60651)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 34.12ms (51.75ms CPU time)
+| src/examples/ArbitrageFlashBorrower.sol:ArbitrageFlashBorrower contract |                 |       |        |        |         |
+|-------------------------------------------------------------------------|-----------------|-------|--------|--------|---------|
+| Deployment Cost                                                         | Deployment Size |       |        |        |         |
+| 611468                                                                  | 2473            |       |        |        |         |
+| Function Name                                                           | min             | avg   | median | max    | # calls |
+| executeArbitrage                                                        | 37366           | 77844 | 43073  | 153093 | 3       |
+
+
+| src/examples/FlashLender.sol:FlashLender contract |                 |       |        |       |         |
+|---------------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                                   | Deployment Size |       |        |       |         |
+| 752369                                            | 3563            |       |        |       |         |
+| Function Name                                     | min             | avg   | median | max   | # calls |
+| addSupportedToken                                 | 46243           | 46243 | 46243  | 46243 | 1       |
+| flashFee                                          | 2838            | 2838  | 2838   | 2838  | 1       |
+| maxFlashLoan                                      | 8019            | 8019  | 8019   | 8019  | 1       |
+| owner                                             | 2323            | 2323  | 2323   | 2323  | 1       |
+| removeSupportedToken                              | 24322           | 24322 | 24322  | 24322 | 1       |
+| supportedTokens                                   | 559             | 1225  | 559    | 2559  | 3       |
+| withdrawToken                                     | 24230           | 32203 | 32203  | 40176 | 2       |
+
+
+| test/unit/FlashLoan.t.sol:MockToken contract |                 |       |        |       |         |
+|----------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                              | Deployment Size |       |        |       |         |
+| 557797                                       | 3037            |       |        |       |         |
+| Function Name                                | min             | avg   | median | max   | # calls |
+| approve                                      | 46683           | 46683 | 46683  | 46683 | 40      |
+| balanceOf                                    | 562             | 2228  | 2562   | 2562  | 6       |
+| transfer                                     | 51632           | 51632 | 51632  | 51632 | 30      |
+
+
+
+
+Ran 1 test suite in 35.23ms (34.12ms CPU time): 10 tests passed, 0 failed, 0 skipped (10 total tests)
