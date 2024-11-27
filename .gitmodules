@@ -4,9 +4,6 @@
 [submodule "DeFi-Related Standards/ERC-4626/lib/forge-std"]
 	path = DeFi-Related Standards/ERC-4626/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "DeFi-Related Standards/ERC-4626/lib/openzeppelin-contracts"]
-	path = DeFi-Related Standards/ERC-4626/lib/openzeppelin-contracts
-	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 [submodule "Core Token Standards/ERC-777/lib/forge-std"]
 	path = Core Token Standards/ERC-777/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
@@ -19,15 +16,9 @@
 [submodule "NFT Enhancement Standards/ERC-721A/lib/forge-std"]
 	path = NFT Enhancement Standards/ERC-721A/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "NFT Enhancement Standards/ERC-721A/lib/openzeppelin-contracts"]
-	path = NFT Enhancement Standards/ERC-721A/lib/openzeppelin-contracts
-	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 [submodule "NFT Enhancement Standards/ERC-2981/lib/forge-std"]
 	path = NFT Enhancement Standards/ERC-2981/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "NFT Enhancement Standards/ERC-2981/lib/openzeppelin-contracts"]
-	path = NFT Enhancement Standards/ERC-2981/lib/openzeppelin-contracts
-	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 [submodule "NFT Enhancement Standards/ERC-4907/lib/forge-std"]
 	path = NFT Enhancement Standards/ERC-4907/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
