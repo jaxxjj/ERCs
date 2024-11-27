@@ -1,0 +1,54 @@
+Ran 19 tests for test/unit/MyToken.t.sol:MyTokenTest
+[PASS] invariant_TotalSupplyCheck() (runs: 256, calls: 128000, reverts: 118920)
+[PASS] testFail_ExceedMaxPerMint() (gas: 95526)
+[PASS] testFail_ExceedMaxPerWallet() (gas: 501794)
+[PASS] testFail_InsufficientPayment() (gas: 97785)
+[PASS] testFail_NonOwnerToggle() (gas: 34018)
+[PASS] testFail_NonWhitelistedMint() (gas: 45688)
+[PASS] testFail_PublicMintDisabled() (gas: 45707)
+[PASS] testFail_URIQueryNonexistent() (gas: 7599)
+[PASS] testFuzz_MintQuantity(uint256) (runs: 256, μ: 210289, ~: 208615)
+[PASS] test_BatchMintGasUsage() (gas: 285410)
+[PASS] test_BatchWhitelist() (gas: 89370)
+[PASS] test_InitialState() (gas: 26171)
+[PASS] test_MintGasUsage() (gas: 184395)
+[PASS] test_PublicMint() (gas: 184371)
+[PASS] test_PublicMintBatch() (gas: 234964)
+[PASS] test_TogglePublicMint() (gas: 60799)
+[PASS] test_TokenURI() (gas: 234701)
+[PASS] test_WhitelistMint() (gas: 183954)
+[PASS] test_Withdrawal() (gas: 240304)
+Suite result: ok. 19 passed; 0 failed; 0 skipped; finished in 1.47s (3.27s CPU time)
+| src/examples/MyToken.sol:MyToken contract |                 |        |        |        |         |
+|-------------------------------------------|-----------------|--------|--------|--------|---------|
+| Deployment Cost                           | Deployment Size |        |        |        |         |
+| 1713677                                   | 7847            |        |        |        |         |
+| Function Name                             | min             | avg    | median | max    | # calls |
+| MAX_PER_MINT                              | 263             | 263    | 263    | 263    | 1       |
+| MAX_PER_WALLET                            | 307             | 307    | 307    | 307    | 1       |
+| MAX_SUPPLY                                | 263             | 263    | 263    | 263    | 2       |
+| PRICE                                     | 284             | 284    | 284    | 284    | 1       |
+| balanceOf                                 | 657             | 657    | 657    | 657    | 259     |
+| batchUpdateWhitelist                      | 73408           | 73408  | 73408  | 73408  | 1       |
+| getMintedCount                            | 604             | 604    | 604    | 604    | 1       |
+| isPublicMintEnabled                       | 346             | 1679   | 2346   | 2346   | 3       |
+| isWhitelisted                             | 632             | 632    | 632    | 632    | 2       |
+| mint                                      | 28729           | 145176 | 144800 | 220430 | 268     |
+| name                                      | 3330            | 3330   | 3330   | 3330   | 1       |
+| ownerOf                                   | 559             | 559    | 559    | 559    | 1       |
+| renounceOwnership                         | 7031            | 7031   | 7031   | 7031   | 1       |
+| setApprovalForAll                         | 4788            | 14827  | 24688  | 24688  | 9110    |
+| setBaseURI                                | 48499           | 48499  | 48499  | 48499  | 1       |
+| setPublicMintEnabled                      | 23764           | 46735  | 46901  | 46901  | 268     |
+| symbol                                    | 3284            | 3284   | 3284   | 3284   | 1       |
+| tokenURI                                  | 2535            | 2568   | 2568   | 2602   | 2       |
+| totalSupply                               | 4627            | 4627   | 4627   | 4627   | 1       |
+| transferOwnership                         | 7246            | 7246   | 7246   | 7246   | 1       |
+| updateWhitelist                           | 6417            | 27153  | 27153  | 47889  | 2       |
+| whitelistMint                             | 28753           | 74183  | 74183  | 119614 | 2       |
+| withdraw                                  | 30399           | 30399  | 30399  | 30399  | 1       |
+
+
+
+
+Ran 1 test suite in 1.49s (1.47s CPU time): 19 tests passed, 0 failed, 0 skipped (19 total tests)
