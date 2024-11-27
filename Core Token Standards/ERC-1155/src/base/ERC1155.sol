@@ -5,7 +5,7 @@ import "./ERC165.sol";
 import "../interfaces/IERC1155.sol";
 import "../interfaces/IERC1155Receiver.sol";
 
-contract BasicERC1155 is IERC165, IERC1155 {
+contract ERC1155 is IERC165, IERC1155 {
 
     // Mapping from token ID to account balances
     mapping(uint256 => mapping(address => uint256)) private _balances;

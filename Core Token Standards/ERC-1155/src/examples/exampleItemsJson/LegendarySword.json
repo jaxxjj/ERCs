@@ -1,0 +1,93 @@
+{
+    "name": "Legendary Sword",
+    "description": "An ancient blade forged in dragon's breath", 
+    "external_url": "https://game.example/items/2",
+    "image": "https://game.example/images/2.png",
+    "animation_url": "https://game.example/animations/sword_idle.glb",
+    "background_color": "000000",
+    
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Legendary"
+      },
+      {
+        "trait_type": "Type",
+        "value": "Weapon"
+      },
+      {
+        "trait_type": "Damage",
+        "value": 150,
+        "max_value": 200
+      },
+      {
+        "trait_type": "Level Requirement",
+        "value": 50
+      },
+      {
+        "display_type": "boost_percentage",
+        "trait_type": "Critical Hit Chance",
+        "value": 15
+      },
+      {
+        "display_type": "boost_number",
+        "trait_type": "Strength Bonus",
+        "value": 25
+      },
+      {
+        "display_type": "number",
+        "trait_type": "Durability",
+        "value": 100,
+        "max_value": 100
+      }
+    ],
+    
+    "properties": {
+      "category": "weapon",
+      "weapon_type": "sword",
+      "two_handed": true,
+      "materials": ["dragonstone", "mythril"],
+      "enchantments": ["fire", "lightning"],
+      
+      "files": [
+        {
+          "uri": "https://game.example/models/sword_3d.glb",
+          "type": "glb"
+        },
+        {
+          "uri": "https://game.example/images/sword_icon.png",
+          "type": "icon"
+        }
+      ],
+      
+      "games": [
+        {
+          "name": "Game Title",
+          "compatible_versions": ["1.0.0", "1.1.0"]
+        }
+      ]
+    },
+    
+    "game_data": {
+      "stats": {
+        "damage": {
+          "base": 150,
+          "fire": 25,
+          "lightning": 25
+        },
+        "attack_speed": 1.2,
+        "range": 2.5,
+        "weight": 12
+      },
+      "equipment_slot": "main_hand",
+      "class_restrictions": ["warrior", "paladin"],
+      "level_requirement": 50,
+      "crafting": {
+        "recipe_id": "legendary_sword_001",
+        "materials_required": {
+          "dragonstone": 5,
+          "mythril": 10
+        }
+      }
+    }
+  }

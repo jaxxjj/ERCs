@@ -1,0 +1,62 @@
+{
+  "name": "Health Potion",
+  "description": "Restores 100 HP instantly",
+  "external_url": "https://game.example/items/0",
+  "image": "https://game.example/images/health_potion.png",
+  "background_color": "ff0000",
+  
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Consumable"
+    },
+    {
+      "trait_type": "Healing Amount",
+      "value": 100
+    },
+    {
+      "trait_type": "Cooldown",
+      "value": "5 seconds"
+    }
+  ],
+  
+  "properties": {
+    "category": "potion",
+    "stackable": true,
+    "max_stack": 99,
+    
+    "files": [
+      {
+        "uri": "https://game.example/images/potion_icon.png",
+        "type": "icon"
+      },
+      {
+        "uri": "https://game.example/animations/drink_potion.mp4",
+        "type": "animation"
+      }
+    ]
+  },
+  
+  "game_data": {
+    "effects": {
+      "heal": 100,
+      "duration": 0,
+      "instant": true
+    },
+    "use_time": 1.5,
+    "cooldown": 5,
+    "vendor_price": 50,
+    "tradeable": true,
+    "crafting": {
+      "recipe_id": "health_potion_001",
+      "materials_required": {
+        "red_herb": 2,
+        "crystal_water": 1
+      }
+    }
+  }
+}
