@@ -1,66 +1,33 @@
-## Foundry
-
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+ERC-777 Token Standard & Hook Implementations
+Overview
+ERC-777 is an advanced token standard that extends ERC-20 functionality with hooks - callbacks that execute when tokens are sent or received. This enables tokens to react to transfers, enabling more complex token behaviors while maintaining backwards compatibility with ERC-20.
+Hook Mechanisms
+TokenSender
+Implements tokensToSend hook
+Called before tokens leave an address
+Can be used to validate/prepare for outgoing transfers
+Must return successfully or transfer fails
+TokenRecipient
+Implements tokensReceived hook
+Called after tokens arrive at an address
+Can perform post-transfer logic
+Must return successfully or transfer fails
+Implementation Examples
+Basic Recipient
+}
+2. Escrow Recipient
+}
+Rejecting Recipient
+}
+Security Considerations
+1. Always register implementations with ERC1820 registry
+2. Protect against reentrance attacks in hooks
+Validate operators in sender hooks
+Handle failed hook executions gracefully
+Test hook behavior thoroughly before deployment
+Key Benefits
+Enhanced control over token movement
+Ability to reject unwanted transfers
+Complex token behaviors like escrow
+Backwards compatibility with ERC-20
+For implementation examples and testing, see the examples/ directory.

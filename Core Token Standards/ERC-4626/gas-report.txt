@@ -1,0 +1,22 @@
+Compiling 1 files with Solc 0.8.26
+Solc 0.8.26 finished in 905.10ms
+Compiler run successful!
+
+Ran 1 test for test/unit/MyVault.t.sol:SecureVaultTest
+[FAIL: setup failed: ERC20InsufficientAllowance(0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9, 0, 1000000000000000000000 [1e21])] setUp() (gas: 0)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 14.71ms (0.00ns CPU time)
+
+Ran 1 test for test/fuzz/MyVault.fuzz.t.sol:SecureVaultFuzzTest
+[FAIL: setup failed: ERC20InsufficientAllowance(0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9, 0, 1000000000000000000000 [1e21])] setUp() (gas: 0)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 14.78ms (0.00ns CPU time)
+| lib/openzeppelin-contracts/contracts/mocks/token/ERC20Mock.sol:ERC20Mock contract |                 |       |        |       |         |
+|-----------------------------------------------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                                                                   | Deployment Size |       |        |       |         |
+| 980236                                                                            | 5016            |       |        |       |         |
+| Function Name                                                                     | min             | avg   | median | max   | # calls |
+| approve                                                                           | 46964           | 46964 | 46964  | 46964 | 1       |
+| decimals                                                                          | 432             | 432   | 432    | 432   | 1       |
+| mint                                                                              | 68959           | 68959 | 68959  | 68959 | 1       |
+
+
+
