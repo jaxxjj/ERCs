@@ -1,33 +1,208 @@
-ERC-777 Token Standard & Hook Implementations
-Overview
-ERC-777 is an advanced token standard that extends ERC-20 functionality with hooks - callbacks that execute when tokens are sent or received. This enables tokens to react to transfers, enabling more complex token behaviors while maintaining backwards compatibility with ERC-20.
-Hook Mechanisms
-TokenSender
-Implements tokensToSend hook
-Called before tokens leave an address
-Can be used to validate/prepare for outgoing transfers
-Must return successfully or transfer fails
-TokenRecipient
-Implements tokensReceived hook
-Called after tokens arrive at an address
-Can perform post-transfer logic
-Must return successfully or transfer fails
-Implementation Examples
-Basic Recipient
+# ERC-777 Token Standard Implementation
+
+## Overview
+
+ERC-777 is an advanced token standard that extends ERC-20 functionality while maintaining backward compatibility. It introduces powerful features through hooks - callbacks that execute during token transfers, enabling sophisticated token behaviors and controls.
+
+## Key Features
+
+- **Hooks**: Pre and post-transfer execution
+- **Operators**: Authorized accounts that can move tokens
+- **ERC-20 Compatibility**: Works with existing ERC-20 infrastructure
+- **Data Field**: Attach metadata to transfers
+- **Token Control**: Reject unwanted transfers
+
+## Architecture
+
+### Hook System
+
+#### TokenSender Hook
+```solidity
+interface IERC777Sender {
+    function tokensToSend(
+        address operator,
+        address from,
+        address to,
+        uint256 amount,
+        bytes calldata userData,
+        bytes calldata operatorData
+    ) external;
 }
-2. Escrow Recipient
+```
+
+- Executes before tokens leave an address
+- Can validate or prepare for transfers
+- Ability to reject transfers
+- Common uses: Transfer limits, whitelisting
+
+#### TokenRecipient Hook
+```solidity
+interface IERC777Recipient {
+    function tokensReceived(
+        address operator,
+        address from,
+        address to,
+        uint256 amount,
+        bytes calldata userData,
+        bytes calldata operatorData
+    ) external;
 }
-Rejecting Recipient
+```
+
+- Executes after tokens arrive
+- Can process received tokens
+- Must complete successfully
+- Common uses: Accounting, notifications
+
+## Implementation Examples
+
+### 1. Basic Token
+```solidity
+contract MyToken is ERC777 {
+    constructor(address[] memory operators) 
+        ERC777("MyToken", "MTK", operators) {
+        // Token initialization
+    }
 }
-Security Considerations
-1. Always register implementations with ERC1820 registry
-2. Protect against reentrance attacks in hooks
-Validate operators in sender hooks
-Handle failed hook executions gracefully
-Test hook behavior thoroughly before deployment
-Key Benefits
-Enhanced control over token movement
-Ability to reject unwanted transfers
-Complex token behaviors like escrow
-Backwards compatibility with ERC-20
-For implementation examples and testing, see the examples/ directory.
+```
+
+### 2. Transfer Limiter
+```solidity
+contract TransferLimiter is IERC777Sender {
+    uint256 constant DAILY_LIMIT = 1000 * 1e18;
+    
+    function tokensToSend(...) external {
+        require(amount <= DAILY_LIMIT, "Exceeds daily limit");
+    }
+}
+```
+
+### 3. Escrow Recipient
+```solidity
+contract EscrowRecipient is IERC777Recipient {
+    mapping(address => uint256) public held;
+    
+    function tokensReceived(...) external {
+        held[from] += amount;
+    }
+}
+```
+
+## Security Considerations
+
+### 1. ERC1820 Registry
+- **Required**: Must register implementations
+- **Verification**: Check registration status
+- **Updates**: Handle implementation changes
+
+### 2. Reentrancy Protection
+```solidity
+contract SecureRecipient is IERC777Recipient {
+    uint256 private _status;
+    
+    modifier nonReentrant() {
+        require(_status == 0, "Reentrant call");
+        _status = 1;
+        _;
+        _status = 0;
+    }
+    
+    function tokensReceived(...) external nonReentrant {
+        // Safe implementation
+    }
+}
+```
+
+### 3. Hook Validation
+- Validate operator permissions
+- Check transfer amounts
+- Verify sender/recipient addresses
+- Handle failed hook executions
+
+## Testing
+
+### Setup
+```bash
+# Install dependencies
+forge install
+```
+
+### Run Tests
+```bash
+# Run all tests
+forge test
+
+# Run fork tests
+forge test --fork-url $MAINNET_RPC_URL -vvv
+```
+
+### Test Coverage
+```bash
+forge coverage
+```
+
+## Development Guide
+
+### 1. Installation
+```bash
+# Clone repository
+git clone <repository>
+
+# Install dependencies
+forge install
+```
+
+### 2. Configuration
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Set required variables
+MAINNET_RPC_URL=your_rpc_url
+```
+
+### 3. Deployment
+```bash
+# Deploy to local network
+forge script scripts/Deploy.s.sol --broadcast
+
+# Deploy to testnet
+forge script scripts/Deploy.s.sol --rpc-url $TESTNET_RPC_URL --broadcast
+```
+
+## Best Practices
+
+1. **Hook Implementation**
+   - Keep hooks lightweight
+   - Implement proper security checks
+   - Handle all edge cases
+   - Add comprehensive events
+
+2. **Operator Management**
+   - Carefully control operator permissions
+   - Implement operator revocation
+   - Monitor operator activities
+   - Regular permission audits
+
+3. **Testing**
+   - Test all hook scenarios
+   - Verify ERC-20 compatibility
+   - Check operator behaviors
+   - Test failure cases
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch
+3. Commit changes
+4. Submit pull request
+
+## License
+
+MIT License - see LICENSE.md
+
+## Resources
+
+- [EIP-777 Specification](https://eips.ethereum.org/EIPS/eip-777)
+- [ERC1820 Registry](https://eips.ethereum.org/EIPS/eip-1820)
+- [OpenZeppelin Implementation](https://docs.openzeppelin.com/contracts/4.x/api/token/erc777)
