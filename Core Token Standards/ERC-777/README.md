@@ -12,7 +12,16 @@ ERC-777 is an advanced token standard that extends ERC-20 functionality while ma
 - **Data Field**: Attach metadata to transfers
 - **Token Control**: Reject unwanted transfers
 
-## Architecture
+## Deployment
+
+Sepolia (11155111): 
+- MyNFT deployed at: [0xA10B82f101b2724B8e79Db97cB00A900E44FE8D2](https://sepolia.etherscan.io/address/0xA10B82f101b2724B8e79Db97cB00A900E44FE8D2)
+
+Arbitrum sepolia (421611):
+- MyNFT deployed at: [0xC764FDc0A76d8074DC848d55824f1B24A7568D58](https://sepolia.arbiscan.io/address/0xC764FDc0A76d8074DC848d55824f1B24A7568D58)
+
+Base sepolia (84632):
+- MyNFT deployed at: [0xBc2e2A0b54F128118C3886ef2045e6982822719b](https://sepolia.basescan.org/address/0xBc2e2A0b54F128118C3886ef2045e6982822719b)
 
 ### Hook System
 
