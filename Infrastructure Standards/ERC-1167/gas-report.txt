@@ -1,0 +1,40 @@
+Ran 10 tests for test/unit/Example.t.sol:ExampleTest
+[PASS] testCloneSetValue() (gas: 243742)
+[PASS] testCreateDeterministicClone() (gas: 208362)
+[PASS] testCreateNewClone() (gas: 200780)
+[PASS] testDoubleInitialization() (gas: 104340)
+[PASS] testDuplicateDeterministicClone() (gas: 1040457464)
+[PASS] testGetAllClones() (gas: 533597)
+[PASS] testImplementationInitialization() (gas: 84095)
+[PASS] testImplementationIsolation() (gas: 468889)
+[PASS] testNonOwnerSetValue() (gas: 222809)
+[PASS] testPredictCloneAddress() (gas: 197255)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 7.42ms (13.80ms CPU time)
+| src/examples/ExampleFactory.sol:ExampleFactory contract |                 |           |        |            |         |
+|---------------------------------------------------------|-----------------|-----------|--------|------------|---------|
+| Deployment Cost                                         | Deployment Size |           |        |            |         |
+| 766921                                                  | 3503            |           |        |            |         |
+| Function Name                                           | min             | avg       | median | max        | # calls |
+| clones                                                  | 979             | 979       | 979    | 979        | 2       |
+| createDeterministicClone                                | 165080          | 208194567 | 182180 | 1040261217 | 5       |
+| createNewClone                                          | 164791          | 177005    | 181891 | 181891     | 7       |
+| getAllClones                                            | 2502            | 2502      | 2502   | 2502       | 1       |
+| isClone                                                 | 846             | 846       | 846    | 846        | 2       |
+| predictCloneAddress                                     | 3120            | 3120      | 3120   | 3120       | 2       |
+
+
+| src/examples/ExampleImplementation.sol:ExampleImplementation contract |                 |       |        |       |         |
+|-----------------------------------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                                                       | Deployment Size |       |        |       |         |
+| 331152                                                                | 1324            |       |        |       |         |
+| Function Name                                                         | min             | avg   | median | max   | # calls |
+| initialize                                                            | 24396           | 46600 | 45011  | 66443 | 14      |
+| initialized                                                           | 449             | 449   | 449    | 449   | 3       |
+| owner                                                                 | 555             | 555   | 555    | 555   | 3       |
+| setValue                                                              | 2882            | 19252 | 24709  | 24709 | 4       |
+| value                                                                 | 429             | 1229  | 429    | 2429  | 5       |
+
+
+
+
+Ran 1 test suite in 11.40ms (7.42ms CPU time): 10 tests passed, 0 failed, 0 skipped (10 total tests)
