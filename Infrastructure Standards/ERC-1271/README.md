@@ -1,66 +1,84 @@
-## Foundry
+# ERC-1271: Standard Signature Validation Method for Contracts
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Introduction
 
-Foundry consists of:
+ERC-1271 is a standard interface for smart contracts to validate signatures. This standard allows smart contracts to verify whether a signature is valid for a given message, enabling contracts to act as signers in various protocols and applications.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Why ERC-1271?
 
-## Documentation
+Traditional signature verification (ecrecover) only works with Externally Owned Accounts (EOAs). However, smart contracts cannot generate ECDSA signatures as they don't have private keys. ERC-1271 solves this by:
 
-https://book.getfoundry.sh/
+1. Allowing smart contracts to define their own signature validation logic
+2. Enabling protocols to treat both EOAs and smart contracts uniformly when validating signatures
+3. Supporting various signature schemes and validation methods
 
-## Usage
+## Key Features
 
-### Build
+- **Flexible Validation**: Contracts can implement custom signature validation logic
+- **Standardized Interface**: Common interface for all contract-based signature validation
+- **Backwards Compatible**: Works alongside existing ECDSA signatures
+- **Multi-Signature Support**: Enables complex signing schemes like multisig wallets
+- **Cross-Protocol Compatibility**: Standard interface for all protocols requiring signature validation
 
-```shell
-$ forge build
+## Implementation
+
+The core interface is simple:
+
+```solidity
+interface IERC1271 {
+    function isValidSignature(
+        bytes32 hash,
+        bytes calldata signature
+    ) external view returns (bytes4 magicValue);
+}
 ```
 
-### Test
+Where:
+- `hash`: Message hash that was signed
+- `signature`: Signature bytes to validate
+- Returns `0x1626ba7e` if valid, any other value if invalid
 
-```shell
-$ forge test
-```
+## Example Use Cases
 
-### Format
+1. **Smart Contract Wallets**
+   - Multi-signature wallets
+   - Social recovery wallets
+   - Programmatic authorization
 
-```shell
-$ forge fmt
-```
+2. **DAOs**
+   - Proposal signing
+   - Vote delegation
+   - Permission management
 
-### Gas Snapshots
+3. **DeFi Applications**
+   - Permit-style approvals
+   - Meta-transactions
+   - Signature-based actions
 
-```shell
-$ forge snapshot
-```
+## Deployed Contracts
 
-### Anvil
+### Sepolia (11155111)
+- PermitToken: [`0xaE890542aEEFcB350fA9D6Fb933aA470B9aD819c`](https://sepolia.etherscan.io/address/0xaE890542aEEFcB350fA9D6Fb933aA470B9aD819c)
 
-```shell
-$ anvil
-```
+### Arbitrum Sepolia (421611)
+- PermitToken: [`0x4D02b24ccE4C047Ab2AEeC55b2a53c6820CC4274`](https://sepolia.arbiscan.io/address/0x4D02b24ccE4C047Ab2AEeC55b2a53c6820CC4274)
 
-### Deploy
+### Base Sepolia (84632)
+- PermitToken: [`0xEEceD3e2aE266B46dEcc1627D31855CdCDB02524`](https://sepolia.basescan.org/address/0xEEceD3e2aE266B46dEcc1627D31855CdCDB02524)
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+## Security Considerations
 
-### Cast
+1. **Signature Malleability**: Implement checks against signature replay attacks
+2. **Gas Costs**: Validation logic should be gas-efficient
+3. **Access Control**: Properly manage who can update signature validation logic
+4. **Upgrade Safety**: Consider implications of upgrading validation logic
 
-```shell
-$ cast <subcommand>
-```
+## Resources
 
-### Help
+- [ERC-1271 Standard](https://eips.ethereum.org/EIPS/eip-1271)
+- [OpenZeppelin Implementation](https://docs.openzeppelin.com/contracts/4.x/api/interfaces#IERC1271)
+- [ERC-1271 Discussion](https://ethereum-magicians.org/t/erc-1271-standard-signature-validation-method-for-contracts/1258)
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## License
+
+MIT License

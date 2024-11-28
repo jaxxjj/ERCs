@@ -1,0 +1,45 @@
+No files changed, compilation skipped
+
+Ran 6 tests for test/unit/ExampleContract.t.sol:ExampleContractTest
+[PASS] testExecuteWithContractWalletSignature() (gas: 50743)
+[PASS] testExecuteWithEOASignature() (gas: 46975)
+[PASS] testFailInvalidContractWalletSignature() (gas: 45263)
+[PASS] testFailInvalidEOASignature() (gas: 41459)
+[PASS] testFailInvalidSignatureLength() (gas: 33800)
+[PASS] testFailNonContractWalletImplementation() (gas: 38776)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 25.66ms (114.52ms CPU time)
+
+Ran 5 tests for test/fuzz/ss.sol:SignatureFuzzTest
+[PASS] testFuzzContractWalletSignature(bytes32) (runs: 259, μ: 48538, ~: 48668)
+[PASS] testFuzzEOASignature(bytes32) (runs: 259, μ: 44888, ~: 44993)
+[PASS] testFuzzFailInvalidContractWalletSignature(bytes32,uint256) (runs: 259, μ: 49515, ~: 49604)
+[PASS] testFuzzFailInvalidEOASignature(bytes32,uint256) (runs: 259, μ: 45721, ~: 45830)
+[PASS] testFuzzFailInvalidSignatureLength(bytes32,uint8) (runs: 259, μ: 37401, ~: 37136)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 1.13s (5.60s CPU time)
+| src/examples/ExampleContract.sol:ExampleContract contract |                 |       |        |       |         |
+|-----------------------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                                           | Deployment Size |       |        |       |         |
+| 301037                                                    | 1179            |       |        |       |         |
+| Function Name                                             | min             | avg   | median | max   | # calls |
+| executeWithSignature                                      | 25287           | 31385 | 31683  | 35460 | 1286    |
+
+
+| test/fuzz/ss.sol:MockContractWallet contract |                 |      |        |      |         |
+|----------------------------------------------|-----------------|------|--------|------|---------|
+| Deployment Cost                              | Deployment Size |      |        |      |         |
+| 251425                                       | 978             |      |        |      |         |
+| Function Name                                | min             | avg  | median | max  | # calls |
+| isValidSignature                             | 6318            | 6320 | 6320   | 6322 | 512     |
+
+
+| test/unit/ExampleContract.t.sol:MockContractWallet contract |                 |      |        |      |         |
+|-------------------------------------------------------------|-----------------|------|--------|------|---------|
+| Deployment Cost                                             | Deployment Size |      |        |      |         |
+| 251425                                                      | 978             |      |        |      |         |
+| Function Name                                               | min             | avg  | median | max  | # calls |
+| isValidSignature                                            | 6318            | 6320 | 6320   | 6322 | 2       |
+
+
+
+
+Ran 2 test suites in 1.16s (1.16s CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)
