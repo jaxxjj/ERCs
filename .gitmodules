@@ -55,3 +55,6 @@
 [submodule "Infrastructure Standards/ERC-1167/lib/forge-std"]
 	path = Infrastructure Standards/ERC-1167/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Infrastructure Standards/ERC-1271/lib/forge-std"]
+	path = Infrastructure Standards/ERC-1271/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
