@@ -7,34 +7,23 @@ import {UUPSUpgradeable} from "../base/UUPSUpgradeable.sol";
  */
 contract ExampleImplementationV1 is UUPSUpgradeable {
     uint256 public value;
-    address private owner;
+    bool private initialized;
 
-    // Initializer modifier ensures function can only be called once
     modifier initializer() {
-        require(!_isInitialized(), "Already initialized");
+        require(!initialized, "Already initialized");
         _;
-        _setInitialized();
+        initialized = true;
     }
 
-    function initialize(address _owner) public initializer {
-        owner = _owner;
+    function initialize() public initializer {
+        value = 0;
     }
 
     function setValue(uint256 _value) external {
-        require(msg.sender == owner, "Not owner");
         value = _value;
     }
 
-    function _authorizeUpgrade(address) internal view override {
-        require(msg.sender == owner, "Not owner");
-    }
-
-    function _isInitialized() internal view returns (bool) {
-        return owner != address(0);
-    }
-
-    function _setInitialized() private {
-        require(owner == address(0), "Already initialized");
-        owner = msg.sender;
+    function _authorizeUpgrade(address) internal pure override {
+        // Anyone can upgrade in this example
     }
 }

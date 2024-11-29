@@ -1,103 +1,90 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-import {ERC1967Storage} from "./ERC1967Storage.sol";
-import {IUpgradeable} from "../interfaces/IUpgradeable.sol";
+
+import "./Proxy.sol";
+import {ERC1967Utils} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Utils.sol";
+
 /**
- * @title ERC1967Proxy
- * @dev Basic implementation of an upgradeable proxy following ERC1967
+ * @dev ERC1967 Proxy implementation with upgrade and admin functionality
  */
-contract ERC1967Proxy is ERC1967Storage, IUpgradeable {
+contract ERC1967Proxy is Proxy {
     /**
-     * @dev Initializes the upgradeable proxy with an initial implementation
+     * @dev Initializes the upgradeable proxy with an initial implementation specified by `_implementation`.
+     * 
+     * If `_data` is nonempty, it's used as data in a delegate call to `_implementation`. This will typically be
+     * an encoded function call, and allows initializing the storage of the proxy like a Solidity constructor.
      */
-    constructor(address _logic, bytes memory _data) payable {
-        _setImplementation(_logic);
-        if(_data.length > 0) {
-            (bool success,) = _logic.delegatecall(_data);
-            require(success, "Initialization failed");
-        }
+    constructor(address _implementation, bytes memory _data) payable {
+        // Set deployer as admin first
+        ERC1967Utils.changeAdmin(msg.sender);
+        
+        // Then set implementation
+        ERC1967Utils.upgradeToAndCall(_implementation, _data);
     }
 
     /**
-     * @dev Delegates all calls to the current implementation
+     * @dev Returns the current implementation address.
      */
-    fallback() external payable virtual {
-        _delegate(_getImplementation());
+    function _implementation() internal view virtual override returns (address) {
+        return ERC1967Utils.getImplementation();
     }
 
+    /**
+     * @dev Modifier that checks if caller is the admin
+     */
+    modifier onlyAdmin() {
+        require(msg.sender == ERC1967Utils.getAdmin(), "Not authorized");
+        _;
+    }
+
+    /**
+     * @dev Admin function to upgrade the implementation.
+     */
+    function upgradeTo(address newImplementation) external onlyAdmin {
+        ERC1967Utils.upgradeToAndCall(newImplementation, "");
+    }
+
+    /**
+     * @dev Admin function to upgrade the implementation and call a function.
+     */
+    function upgradeToAndCall(address newImplementation, bytes memory data) external payable onlyAdmin {
+        ERC1967Utils.upgradeToAndCall(newImplementation, data);
+    }
+
+    /**
+     * @dev Admin function to change the admin.
+     */
+    function changeAdmin(address newAdmin) external onlyAdmin {
+        ERC1967Utils.changeAdmin(newAdmin);
+    }
+
+    /**
+     * @dev Returns the current admin.
+     */
+    function admin() external view returns (address) {
+        return ERC1967Utils.getAdmin();
+    }
+
+    /**
+     * @dev Returns the current implementation.
+     */
+    function getImplementation() external view returns (address) {
+        return ERC1967Utils.getImplementation();
+    }
+
+    /**
+     * @dev Fallback function that delegates calls to the implementation. Will run if no other
+     * function in the contract matches the call data.
+     */
+    fallback() external payable virtual override {
+        _fallback();
+    }
+
+    /**
+     * @dev Fallback function that delegates calls to the implementation. Will run if call data
+     * is empty.
+     */
     receive() external payable virtual {
-        _delegate(_getImplementation());
-    }
-
-    /**
-     * @dev Sets the implementation address
-     */
-    function _setImplementation(address newImplementation) private {
-        require(newImplementation.code.length > 0, "Implementation must be a contract");
-        assembly {
-            sstore(_IMPLEMENTATION_SLOT, newImplementation)
-        }
-        emit Upgraded(newImplementation);
-    }
-
-    /**
-     * @dev Gets the current implementation address
-     */
-    function _getImplementation() internal view returns (address implementation) {
-        assembly {
-            implementation := sload(_IMPLEMENTATION_SLOT)
-        }
-    }
-
-    /**
-     * @dev Delegates execution to the implementation contract
-     */
-    function _delegate(address implementation) internal virtual {
-        assembly {
-            // Copy msg.data. We take full control of memory in this inline assembly
-            // block because it will not return to Solidity code.
-            calldatacopy(0, 0, calldatasize())
-
-            // Call the implementation.
-            // out and outsize are 0 because we don't know the size yet.
-            let result := delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)
-
-            // Copy the returned data.
-            returndatacopy(0, 0, returndatasize())
-
-            switch result
-            // delegatecall returns 0 on error.
-            case 0 {
-                revert(0, returndatasize())
-            }
-            default {
-                return(0, returndatasize())
-            }
-        }
-    }
-
-    event Upgraded(address indexed implementation);
-
-    function upgradeTo(address newImplementation) external override {
-        require(msg.sender == _getAdmin(), "Not authorized");
-        _setImplementation(newImplementation);
-    }
-
-    function upgradeToAndCall(
-        address newImplementation, 
-        bytes memory data
-    ) external payable override {
-        require(msg.sender == _getAdmin(), "Not authorized");
-        _setImplementation(newImplementation);
-        if(data.length > 0) {
-            (bool success,) = newImplementation.delegatecall(data);
-            require(success, "Call failed");
-        }
-    }
-
-    function _getAdmin() internal view returns (address admin) {
-        assembly {
-            admin := sload(_ADMIN_SLOT)
-        }
+        _fallback();
     }
 }

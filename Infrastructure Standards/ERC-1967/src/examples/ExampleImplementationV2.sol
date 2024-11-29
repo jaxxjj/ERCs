@@ -7,21 +7,28 @@ import {UUPSUpgradeable} from "../base/UUPSUpgradeable.sol";
  */
 contract ExampleImplementationV2 is UUPSUpgradeable {
     uint256 public value;
-    address private owner;
     mapping(address => bool) public whitelist;
+    bool private initialized;
 
-    // Added functionality in V2
-    function addToWhitelist(address account) external {
-        require(msg.sender == owner, "Not owner");
-        whitelist[account] = true;
+    modifier initializer() {
+        require(!initialized, "Already initialized");
+        _;
+        initialized = true;
+    }
+
+    function initializeV2() public initializer {
+        // No need to set value as it's preserved from V1
     }
 
     function setValue(uint256 _value) external {
-        require(msg.sender == owner || whitelist[msg.sender], "Not authorized");
         value = _value;
     }
 
-    function _authorizeUpgrade(address) internal view override {
-        require(msg.sender == owner, "Not owner");
+    function addToWhitelist(address _address) external {
+        whitelist[_address] = true;
+    }
+
+    function _authorizeUpgrade(address) internal pure override {
+        // Anyone can upgrade in this example
     }
 }
