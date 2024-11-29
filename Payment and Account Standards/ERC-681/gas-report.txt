@@ -1,0 +1,47 @@
+No files changed, compilation skipped
+
+Ran 7 tests for test/unit/PaymentExecutor.t.sol:PaymentExecutorTest
+[PASS] testETHPayment() (gas: 233152)
+[PASS] testFailDoubleExecution() (gas: 373100)
+[PASS] testFailInsufficientETHBalance() (gas: 66514)
+[PASS] testFailInsufficientTokenBalance() (gas: 391184)
+[PASS] testFailInvalidETHAmount() (gas: 201096)
+[FAIL] testFailInvalidTokenTransfer() (gas: 534744)
+[PASS] testTokenPayment() (gas: 468205)
+Suite result: FAILED. 6 passed; 1 failed; 0 skipped; finished in 8.43ms (9.29ms CPU time)
+| src/Example/PaymentExecutor.sol:PaymentExecutor contract |                 |        |        |        |         |
+|----------------------------------------------------------|-----------------|--------|--------|--------|---------|
+| Deployment Cost                                          | Deployment Size |        |        |        |         |
+| 2005152                                                  | 8927            |        |        |        |         |
+| Function Name                                            | min             | avg    | median | max    | # calls |
+| createPaymentRequest                                     | 48890           | 61910  | 50012  | 79657  | 7       |
+| executeFromURL                                           | 0               | 194180 | 164496 | 340802 | 8       |
+
+
+| src/base/ERC681Parser.sol:ERC681Parser contract |                 |        |        |        |         |
+|-------------------------------------------------|-----------------|--------|--------|--------|---------|
+| Deployment Cost                                 | Deployment Size |        |        |        |         |
+| 0                                               | 0               |        |        |        |         |
+| Function Name                                   | min             | avg    | median | max    | # calls |
+| parseURL                                        | 103261          | 113258 | 103261 | 127601 | 7       |
+
+
+| src/mocks/MockERC20.sol:MockERC20 contract |                 |       |        |       |         |
+|--------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                            | Deployment Size |       |        |       |         |
+| 437443                                     | 2417            |       |        |       |         |
+| Function Name                              | min             | avg   | median | max   | # calls |
+| approve                                    | 27222           | 42457 | 44634  | 44634 | 8       |
+| balanceOf                                  | 541             | 541   | 541    | 541   | 2       |
+| mint                                       | 44033           | 44033 | 44033  | 44033 | 7       |
+
+
+
+
+Ran 1 test suite in 11.89ms (8.43ms CPU time): 6 tests passed, 1 failed, 0 skipped (7 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/unit/PaymentExecutor.t.sol:PaymentExecutorTest
+[FAIL] testFailInvalidTokenTransfer() (gas: 534744)
+
+Encountered a total of 1 failing tests, 6 tests succeeded
