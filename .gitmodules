@@ -79,3 +79,6 @@
 [submodule "Payment and Account Standards/ERC-4337/lib/openzeppelin-contracts"]
 	path = Payment and Account Standards/ERC-4337/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "Infrastructure Standards/ERC-1967/lib/forge-std"]
+	path = Infrastructure Standards/ERC-1967/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
