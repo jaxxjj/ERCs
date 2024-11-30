@@ -1,66 +1,129 @@
-## Foundry
+# ERC-1202: Voting Standard
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Introduction
 
-Foundry consists of:
+ERC-1202 is a standard interface for implementing voting functionality in smart contracts on the Ethereum blockchain. It provides a unified way to handle various types of voting mechanisms while remaining flexible enough to accommodate different voting schemes and requirements.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Overview
 
-## Documentation
+The standard defines core interfaces for:
+- Single-choice voting
+- Multiple-choice voting
+- Vote delegation
+- Vote weight calculation
+- Proposal management
+- Vote execution
 
-https://book.getfoundry.sh/
+### Key Features
+
+1. **Flexible Voting Schemes**
+   - Single choice voting
+   - Multiple choice voting
+   - Weighted voting
+   - Delegated voting
+
+2. **Comprehensive Vote Management**
+   - Vote casting
+   - Vote delegation
+   - Vote period tracking
+   - Result calculation
+   - Weight management
+
+3. **Proposal Lifecycle**
+   - Proposal creation
+   - Voting period management
+   - Result tabulation
+   - Proposal execution
+
+4. **Security & Access Control**
+   - Vote validation
+   - Weight verification
+   - Delegation tracking
+   - Access management
+
+## Interface Components
+
+### IERC1202Core
+The core interface that handles basic voting functionality:
+- `castVote`: Cast a single vote on a proposal
+- `castVoteFrom`: Cast a vote on behalf of another address
+- `execute`: Execute proposal actions
+
+### IERC1202MultiVote
+Extension interface for multiple vote casting:
+- `castMultiVote`: Cast multiple votes with different weights
+
+### IERC1202Info
+Interface for querying voting information:
+- `votingPeriodFor`: Get voting period information
+- `eligibleVotingWeight`: Query voting weight for an address
 
 ## Usage
 
-### Build
+### Basic Implementation
+```solidity
+import "@openzeppelin/contracts/access/AccessControl.sol";
+import "./interfaces/IERC1202Core.sol";
 
-```shell
-$ forge build
+contract MyVoting is IERC1202Core, AccessControl {
+    // Implementation
+}
 ```
 
-### Test
+### Advanced Features
+- Token-based voting power
+- Quadratic voting
+- Time-weighted voting
+- Snapshot-based voting
+- Liquid democracy
 
-```shell
-$ forge test
-```
+## Benefits
 
-### Format
+1. **Standardization**
+   - Common interface for voting systems
+   - Interoperability between contracts
+   - Easier integration with existing systems
 
-```shell
-$ forge fmt
-```
+2. **Flexibility**
+   - Support for various voting mechanisms
+   - Customizable vote counting
+   - Extensible design
 
-### Gas Snapshots
+3. **Security**
+   - Standardized security patterns
+   - Well-defined access control
+   - Vote integrity protection
 
-```shell
-$ forge snapshot
-```
+4. **Transparency**
+   - Clear voting records
+   - Verifiable results
+   - Traceable delegations
 
-### Anvil
+## Best Practices
 
-```shell
-$ anvil
-```
+1. **Implementation**
+   - Use OpenZeppelin's security tools
+   - Implement proper access control
+   - Add comprehensive event logging
+   - Include vote validation
 
-### Deploy
+2. **Security**
+   - Prevent double voting
+   - Validate voting periods
+   - Check voting weights
+   - Secure delegation process
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+3. **Gas Optimization**
+   - Efficient storage patterns
+   - Batch operations where possible
+   - Optimize vote counting
 
-### Cast
+## License
 
-```shell
-$ cast <subcommand>
-```
+MIT
 
-### Help
+## References
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- [EIP-1202](https://eips.ethereum.org/EIPS/eip-1202)
+- [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts)
+- [Ethereum Governance](https://ethereum.org/en/governance/)
