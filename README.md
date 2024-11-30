@@ -1,6 +1,6 @@
-# Ethereum Token Standards Overview
+# Overview
 
-This repository contains a collection of Ethereum token standards, each in its own directory. Each standard is implemented in a separate foundry project and includes:
+This repository contains a collection of ERC standards, each in its own directory. Each standard is implemented in a separate foundry project and includes:
 - a README file explaining the purpose, features, and use cases of the standard
 - a src folder:
   - interfaces: contains the interface of the standards
