@@ -1,66 +1,178 @@
-## Foundry
+# ERC-6372: Contract Clock Standard
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Introduction
 
-Foundry consists of:
+ERC-6372 defines a standard interface for time tracking in smart contracts. It provides a unified way to handle both block-based and timestamp-based timing mechanisms, enabling consistent time handling across different contracts and protocols.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Overview
 
-## Documentation
+The standard introduces two key functions:
+- `clock()`: Returns the current timepoint
+- `CLOCK_MODE()`: Describes the timing mechanism being used
 
-https://book.getfoundry.sh/
+## Specification
 
-## Usage
+### Clock Function
+```solidity
+function clock() external view returns (uint48);
+```
+- Returns the current timepoint according to the contract's timing mode
+- Must be gas efficient (< 30,000 gas)
+- Returns either block number or timestamp
+- Uses uint48 to save gas while supporting long timeframes
 
-### Build
+### Clock Mode
+```solidity
+function CLOCK_MODE() external view returns (string memory);
+```
+- Returns a machine-readable string describing the clock mode
+- Two standard modes:
+  - `"mode=timestamp"`: Uses block.timestamp
+  - `"mode=block"`: Uses block.number
 
-```shell
-$ forge build
+## Use Cases
+
+### 1. Governance Systems
+- Voting period tracking
+- Proposal timing
+- Execution delays
+- Timelock mechanisms
+
+### 2. Token Vesting
+- Vesting period tracking
+- Release schedules
+- Time-based unlocks
+
+### 3. Staking Contracts
+- Staking durations
+- Reward calculations
+- Lock periods
+- Cooldown timers
+
+## Implementation Considerations
+
+### 1. Timestamp Mode
+```solidity
+function clock() public view returns (uint48) {
+    return uint48(block.timestamp);
+}
+
+function CLOCK_MODE() public pure returns (string memory) {
+    return "mode=timestamp";
+}
 ```
 
-### Test
+### 2. Block Number Mode
+```solidity
+function clock() public view returns (uint48) {
+    return uint48(block.number);
+}
 
-```shell
-$ forge test
+function CLOCK_MODE() public pure returns (string memory) {
+    return "mode=block";
+}
 ```
 
-### Format
+## Best Practices
 
-```shell
-$ forge fmt
+### 1. Mode Selection
+- **Timestamp Mode**
+  - Better for human-readable timing
+  - Suitable for longer durations
+  - Less precise due to block time variations
+  
+- **Block Number Mode**
+  - More precise timing
+  - Better for short durations
+  - Consistent across networks
+
+### 2. Gas Optimization
+- Use uint48 for time values
+- Minimize storage operations
+- Batch time-based operations
+
+### 3. Security Considerations
+- Account for block time variations
+- Handle potential timestamp manipulation
+- Consider cross-chain compatibility
+
+## Integration Guidelines
+
+### 1. Governance Integration
+```solidity
+require(clock() >= proposal.startTime, "Not started");
+require(clock() <= proposal.endTime, "Ended");
 ```
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
+### 2. Vesting Integration
+```solidity
+uint48 vestingStart = clock();
+uint48 vestingEnd = vestingStart + vestingDuration;
 ```
 
-### Anvil
-
-```shell
-$ anvil
+### 3. Staking Integration
+```solidity
+uint48 stakingTime = clock();
+uint48 unlockTime = stakingTime + lockPeriod;
 ```
 
-### Deploy
+## Common Patterns
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+### 1. Time Tracking
+- Store timepoints as uint48
+- Use consistent comparison logic
+- Handle time transitions
 
-### Cast
+### 2. Duration Calculations
+- Safe arithmetic for time math
+- Duration bounds checking
+- Overflow prevention
 
-```shell
-$ cast <subcommand>
-```
+### 3. Mode Compatibility
+- Check CLOCK_MODE before integration
+- Handle mode-specific logic
+- Support mode transitions
 
-### Help
+## Benefits
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+1. **Standardization**
+   - Consistent time handling
+   - Cross-contract compatibility
+   - Clear timing semantics
+
+2. **Flexibility**
+   - Multiple timing modes
+   - Easy mode switching
+   - Network adaptability
+
+3. **Gas Efficiency**
+   - Optimized storage
+   - Minimal computation
+   - Reduced transaction costs
+
+## Testing Recommendations
+
+1. **Mode Testing**
+   - Verify mode consistency
+   - Test mode transitions
+   - Validate time calculations
+
+2. **Edge Cases**
+   - Zero timepoints
+   - Maximum timepoints
+   - Mode transitions
+
+3. **Integration Testing**
+   - Cross-contract timing
+   - Mode compatibility
+   - Time synchronization
+
+## References
+
+- [EIP-6372](https://eips.ethereum.org/EIPS/eip-6372)
+- [Ethereum Yellow Paper](https://ethereum.github.io/yellowpaper/paper.pdf)
+- [Block vs Timestamp](https://ethereum.stackexchange.com/questions/413/can-a-contract-safely-rely-on-block-timestamp)
+
+## License
+
+MIT
