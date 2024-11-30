@@ -100,3 +100,6 @@
 [submodule "Governance Standards/ERC-2767/lib/openzeppelin-contracts"]
 	path = Governance Standards/ERC-2767/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "Security and Access Standards/ERC-6372/lib/forge-std"]
+	path = Security and Access Standards/ERC-6372/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
