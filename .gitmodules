@@ -88,3 +88,6 @@
 [submodule "Security and Access Standards/ERC-5267/lib/forge-std"]
 	path = Security and Access Standards/ERC-5267/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Infrastructure Standards/ERC-2535/lib/forge-std"]
+	path = Infrastructure Standards/ERC-2535/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
