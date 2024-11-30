@@ -1,0 +1,31 @@
+Ran 4 tests for test/unit/PermissionManager.t.sol:PermissionManagerTest
+[PASS] testFail_DelegatePermissionExpired() (gas: 3687)
+[PASS] testFail_DelegatePermissionInvalidSigner() (gas: 51103)
+[PASS] test_CheckDelegatedPermission() (gas: 16584)
+[PASS] test_DelegatePermission() (gas: 74447)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 2.60ms (2.31ms CPU time)
+
+Ran 10 tests for test/unit/ExampleContract.t.sol:ExampleContractTest
+[PASS] testFail_ProtectedFunctionWithoutPermission() (gas: 28941)
+[PASS] testFail_ValidateExpiredPermission() (gas: 3261)
+[PASS] testFail_ValidateInvalidSignature() (gas: 16973)
+[PASS] test_BatchPermissions() (gas: 109534)
+[PASS] test_GrantPermission() (gas: 57809)
+[PASS] test_MultiplePermissions() (gas: 106244)
+[PASS] test_PermissionEvents() (gas: 79845)
+[PASS] test_ProtectedFunctionWithPermission() (gas: 75299)
+[PASS] test_RevokePermission() (gas: 77714)
+[PASS] test_ValidateSignedPermission() (gas: 15228)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 2.80ms (7.20ms CPU time)
+| src/examples/PermissionManager.sol:PermissionManager contract |                 |       |        |       |         |
+|---------------------------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                                               | Deployment Size |       |        |       |         |
+| 866110                                                        | 4400            |       |        |       |         |
+| Function Name                                                 | min             | avg   | median | max   | # calls |
+| checkDelegatedPermission                                      | 1467            | 2467  | 2467   | 3467  | 2       |
+| delegatePermission                                            | 30485           | 41579 | 41579  | 52673 | 2       |
+
+
+
+
+Ran 2 test suites in 3.79ms (5.41ms CPU time): 14 tests passed, 0 failed, 0 skipped (14 total tests)
