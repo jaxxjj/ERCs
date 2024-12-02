@@ -2,6 +2,7 @@
 
 This repository contains a collection of ERC standards, each in its own directory. Each standard is implemented in a separate foundry project and includes:
 - a README file explaining the purpose, features, and use cases of the standard
+  - deployment addresses on Sepolia/Arbitrum Sepolia/Base Sepolia
 - a src folder:
   - interfaces: contains the interface of the standards
   - base: contains the implementation of the standards
