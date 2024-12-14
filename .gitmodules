@@ -103,3 +103,6 @@
 [submodule "Security and Access Standards/ERC-6372/lib/forge-std"]
 	path = Security and Access Standards/ERC-6372/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "NFT Enhancement Standards/ERC-6551/lib/forge-std"]
+	path = NFT Enhancement Standards/ERC-6551/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
